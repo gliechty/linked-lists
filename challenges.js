@@ -61,7 +61,22 @@ List.prototype = {
         Insert a new Node at the head of the list.
     */
     insertAtHead: function(data) {
-        // Enter code here!
+                // if linkedList is empty
+        if(this.start === null) {
+            // start becomes a node
+            this.start = this.makeNode();
+            // end becomes the start node
+            this.end = this.start;
+
+            // else linkedList isn't empty
+        } else {
+            var head = this.start;
+            this.start = this.makeNode();
+            // move the end node to end's next node
+            this.start.next = head;
+        }
+        // finally, add the data to the end Node
+        this.start.data = data;
     },
 
     /*
@@ -69,7 +84,14 @@ List.prototype = {
         Traverse the list. Return the amount of Nodes in the list.
     */
     length: function() {
-        // Enter code here!
+        var i = 0;
+        // var LengthList = i;
+        var current = this.start;
+        while(current !== null) {
+            i+=1;
+            current = current.next;
+        }
+        console.log(i);
     },
 
     /*
@@ -78,9 +100,17 @@ List.prototype = {
         true. If not, return false
     */
     exists: function(data) {
-        // Enter code here!
+        var current = this.start;
+        var i = 0;
+        while(current !== null){
+            if (current.data === data){
+                console.log ("exists");
+            } else {
+                console.log("doesn't exist");
+            }
+        current = current.next;
+        }
     },
-
     /*
         Method: each
         Traverse the list. For each Node, call the function f on that Node.
@@ -135,5 +165,7 @@ while(i <= 20) {
     LinkedList.addAtEnd(i);
     i+=2;
 }
-
+// LinkedList.insertAtHead("insert works");
+// LinkedList.length();
 LinkedList.print();
+LinkedList.exists(5);
